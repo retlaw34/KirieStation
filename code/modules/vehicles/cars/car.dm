@@ -1,6 +1,12 @@
 /obj/vehicle/sealed/car
 	layer = ABOVE_MOB_LAYER
+	name = "Standard Pod"
+	desc = "A shiny white vehicle for space farers to fly about"
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "engineering_pod"
 	move_resist = MOVE_FORCE_VERY_STRONG
+	max_occupants = 3
+	max_drivers = 1
 	var/car_traits = NONE //Bitflag for special behavior such as kidnapping
 	var/engine_sound = 'sound/vehicles/carrev.ogg'
 	///Set this to the length of the engine sound.
@@ -8,7 +14,7 @@
 	///Time it takes to break out of the car.
 	var/escape_time = 6 SECONDS
 	/// How long it takes to move, cars don't use the riding component similar to mechs so we handle it ourselves
-	var/vehicle_move_delay = 1
+	var/vehicle_move_delay = 2
 	/// How long it takes to rev (vrrm vrrm!)
 	COOLDOWN_DECLARE(enginesound_cooldown)
 

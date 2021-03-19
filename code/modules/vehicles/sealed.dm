@@ -2,6 +2,10 @@
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	var/enter_delay = 2 SECONDS
 	var/mouse_pointer
+	name = "Standard Pod"
+	desc = "A shiny white vehicle for cargo techs to fly about"
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "engineering_pod"
 
 /obj/vehicle/sealed/generate_actions()
 	. = ..()
