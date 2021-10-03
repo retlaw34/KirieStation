@@ -50,6 +50,7 @@
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000),
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										1000),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500),
+		new /datum/data/mining_equipment("Ice Hiking Boots", 			/obj/item/clothing/shoes/winterboots/ice_boots, 					2500),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000),
 		new /datum/data/mining_equipment("Luxury Bar Capsule",			/obj/item/survivalcapsule/luxuryelite,								10000),
 		new /datum/data/mining_equipment("Nanotrasen Minebot",			/mob/living/simple_animal/hostile/mining_drone,						800),
@@ -65,7 +66,11 @@
 		new /datum/data/mining_equipment("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,								1000),
 		new /datum/data/mining_equipment("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,								1000),
 		new /datum/data/mining_equipment("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,								1000),
-		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000)
+		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000),
+		new /datum/data/mining_equipment("E-224 Mining Pistol",			/obj/item/gun/energy/e_gun/miner,									500),
+		new /datum/data/mining_equipment("E-204 Mining Assault Rifle",	/obj/item/gun/energy/e_gun/miner/rifle,								1000),
+		new /datum/data/mining_equipment("E-244 Mining Scattershot",	/obj/item/gun/energy/e_gun/miner/shotty,							3500),
+		new /datum/data/mining_equipment("E-225 Mining Bolt Pistol",	/obj/item/gun/energy/e_gun/miner/bolter,							5000)
 	)
 
 /datum/data/mining_equipment

@@ -337,9 +337,6 @@
 /obj/machinery/camera{
 	c_tag = "Bridge East"
 	},
-/obj/structure/noticeboard{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -347,6 +344,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/vending/command{
+	pixel_y = 30
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aaU" = (
@@ -4509,8 +4509,6 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
-/obj/item/radio/off,
-/obj/item/radio/off,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -4522,6 +4520,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
+	},
+/obj/item/inspector{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/item/inspector{
+	pixel_x = 7;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -4723,7 +4729,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/retaliate/terry,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "akl" = (
@@ -4870,6 +4875,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/mob/living/simple_animal/pet/dog/pug/mcgriff,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "akw" = (
@@ -6093,6 +6099,7 @@
 	pixel_y = 12
 	},
 /obj/item/retractor,
+/obj/item/surgical_drapes,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "ane" = (
@@ -16205,7 +16212,6 @@
 	pixel_x = -26
 	},
 /obj/effect/turf_decal/delivery,
-/obj/item/gun/energy/e_gun/miner/shotty,
 /obj/item/gun/energy/e_gun/miner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -19049,13 +19055,13 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/bookcase/random/reference,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
+/obj/machinery/vending/psych,
 /turf/open/floor/plasteel/white,
 /area/medical/psychology)
 "cqV" = (
@@ -20371,6 +20377,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "eeE" = (
@@ -26577,9 +26584,6 @@
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"loX" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/port/fore)
 "lpZ" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/space_heater,
@@ -27478,9 +27482,6 @@
 "mpo" = (
 /turf/closed/wall/r_wall,
 /area/science/genetics)
-"mpK" = (
-/turf/closed/wall/r_wall,
-/area/commons/cryopods)
 "mpN" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -27819,7 +27820,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "mMT" = (
-/mob/living/simple_animal/hostile/retaliate/terry,
 /obj/structure/table/reinforced,
 /obj/machinery/light{
 	dir = 4
@@ -34366,7 +34366,6 @@
 "uwR" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/effect/turf_decal/delivery,
-/obj/item/gun/energy/e_gun/miner/shotty,
 /obj/item/gun/energy/e_gun/miner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -36923,9 +36922,6 @@
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = 23
-	},
-/obj/machinery/airalarm{
-	pixel_y = 23
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
@@ -61452,7 +61448,7 @@ bcU
 bcU
 wGH
 bcU
-mpK
+bcU
 aAC
 aeo
 aeo
@@ -61709,7 +61705,7 @@ wGH
 kSt
 dyp
 rPs
-mpK
+bcU
 aAD
 pWH
 ahk
@@ -61966,7 +61962,7 @@ wGH
 rVx
 dyp
 rVx
-mpK
+bcU
 aCw
 hYU
 hFF
@@ -62223,7 +62219,7 @@ wGH
 rVx
 fAN
 hpI
-mpK
+bcU
 wgM
 viU
 dJr
@@ -62480,7 +62476,7 @@ qpi
 iOo
 bkv
 taD
-mpK
+bcU
 ajy
 uWg
 uWg
@@ -62733,11 +62729,11 @@ lZy
 naN
 axu
 anW
-mpK
-mpK
+bcU
+bcU
 xHJ
-mpK
-mpK
+bcU
+bcU
 uWg
 uWg
 wdv
@@ -73743,7 +73739,7 @@ acg
 act
 aUw
 eFr
-loX
+aUw
 aaS
 aaS
 aaS
@@ -74000,18 +73996,18 @@ afP
 aiV
 aUw
 aUw
-loX
-loX
+aUw
+aUw
 sKl
 sKl
 afM
-loX
-loX
-loX
-loX
-loX
-loX
-loX
+aUw
+aUw
+aUw
+aUw
+aUw
+aUw
+aUw
 aPD
 aqc
 aNc
