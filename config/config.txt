@@ -16,7 +16,7 @@ $include interviews.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-SERVERNAME TeguStation
+SERVERNAME Game on your phone
 
 ## Server Caption: Shows next to the server name in the BYOND hub.
 SERVERCAPTION All the Good Players Are Taken
@@ -25,7 +25,7 @@ SERVERCAPTION All the Good Players Are Taken
 # SERVERSQLNAME tgstation
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-# STATIONNAME Space Station 13
+# STATIONNAME Space Station 12
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 HUB
