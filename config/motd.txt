@@ -1,11 +1,9 @@
-<h1>Welcome to the The!</h1>
-<i>This server is running a customized dsfasdfads Git build, coded by afsdsdfsdg.</i>
+<h1>Welcome to The Space station!</h1>
+<i>This server is running a customized tgstation Git build, forked on 9/2/21.</i>
 
 <h1><b>[USE THIS LINK TO READ THE RULES]</b></a></h1>
-no lol
+dont be a ass
 
-<h2><b>[USE THIS LINK TO READ OUR SPACELAW]</b></a></h2>
-no lol
 
-<h2><b>[USE THIS LINK TO ACCESS THE DISCORD]</b></a></h2>
-no lol
+<h2><b>[]</b></a></h2>
+
