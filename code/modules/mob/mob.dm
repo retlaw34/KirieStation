@@ -1304,6 +1304,9 @@
 	. = stat
 	stat = new_stat
 
+/// Used for typing indicator, relevant on /living level
+/mob/proc/set_typing_indicator(state)
+	return
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
