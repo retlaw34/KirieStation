@@ -4,10 +4,8 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	//BUNGALOW EDIT ADDITION BEGIN - TYPING_INDICATOR
 	if(typing_indicator)
 		set_typing_indicator(FALSE)
-	//BUNGALOW EDIT ADDITION END
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
@@ -31,31 +29,6 @@
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
-	//BUNGALOW EDIT ADDITION BEGIN - TYPING_INDICATOR
-	if(typing_indicator)
-		set_typing_indicator(FALSE)
-	//BUNGALOW EDIT ADDITION END
-
-	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
-		return
-
-	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
-
-	usr.emote("me",1,message,TRUE)
-
-///Speak as a dead person (ghost etc)
-/mob/proc/say_dead(message)
-	var/name = real_name
-	var/alt_name = ""
-
-	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
-		return
-
-	var/jb = is_banned_from(ckey, "Deadchat")
-	if(QDELETED(src))
-		return
 
 	if(jb)
 		to_chat(src, "<span class='danger'>You have been banned from deadchat.</span>")
@@ -70,6 +43,9 @@
 
 		if(src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
 			return
+
+	if(typing_indicator)
+		set_typing_indicator(FALSE)
 
 	var/mob/dead/observer/O = src
 	if(isobserver(src) && O.deadchat_name)
