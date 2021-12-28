@@ -31,3 +31,22 @@
 	caliber = CALIBER_40MM
 	icon_state = "40mmHE"
 	projectile_type = /obj/projectile/bullet/a40mm
+
+//7.62 (AK47)
+
+/obj/item/ammo_casing/ballistic/a762_39
+	name = "7.62x39mm bullet casing"
+	desc = "A 7.62x39mm bullet casing."
+	caliber = "7.62x39mm"
+	variance = 2
+	projectile_type = /obj/projectile/bullet/a762_39
+
+//5.45 (AK74)
+
+/obj/item/ammo_casing/ballistic/a545_39
+	name = "5.45x39mm bullet casing"
+	desc = "A 5.45x39mm bullet casing."
+	caliber = "5.45x39mm"
+	randomspread = TRUE
+	variance = 2
+	projectile_type = /obj/projectile/bullet/a545_39

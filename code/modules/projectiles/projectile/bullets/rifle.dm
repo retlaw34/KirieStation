@@ -38,3 +38,15 @@
 	bare_wound_bonus = 80
 	embedding = list(embed_chance=100, fall_chance=3, jostle_chance=4, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
 	wound_falloff_tile = -5
+
+//7.62 (AK47)
+
+/obj/projectile/bullet/a762_39
+	name = "7.62x39mm bullet"
+	damage = 27
+
+//5.45 (AK74)
+
+/obj/projectile/bullet/a545_39
+	name = "5.45x39mm bullet"
+	damage = 34

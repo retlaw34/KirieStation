@@ -389,27 +389,27 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			playsound(src, pick('sound/machines/fryer/deep_fryer_1.ogg', 'sound/machines/fryer/deep_fryer_2.ogg'), 100, TRUE)
 			var/obj/item/reagent_containers/food/grilled_item = I
 			if(prob(80))
-				return //To give the illusion that it's actually cooking omegalul.
+				return //To give the illusion that it's actually cooking omegalul. //I dont think these even work
 			switch(power)
 				if(20 to 39)
 					grilled_item.name = "grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "[initial(I.desc)] It's been grilled over a nuclear reactor."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED))
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(40 to 70)
 					grilled_item.name = "heavily grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "[initial(I.desc)] It's been heavily grilled through the magic of nuclear fission."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED))
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(70 to 95)
 					grilled_item.name = "Three-Mile Nuclear-Grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "A [initial(grilled_item.name)]. It's been put on top of a nuclear reactor running at extreme power by some badass engineer."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED))
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(95 to INFINITY)
 					grilled_item.name = "Ultimate Meltdown Grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "A [initial(grilled_item.name)]. A grill this perfect is a rare technique only known by a few engineers who know how to perform a 'controlled' meltdown whilst also having the time to throw food on a reactor. I'll bet it tastes amazing."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED))
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
