@@ -143,3 +143,47 @@
 /obj/item/gun/medbeam/mech/Initialize()
 	. = ..()
 	STOP_PROCESSING(SSobj, src) //Mech mediguns do not process until installed, and are controlled by the holder obj
+
+//////////////////////////////Cyborg Version///////////////////////////////
+/obj/item/gun/medbeam/cyborg
+	name = "Integrated Medical Beamgun"
+	desc = "Advanced protonic nano-something or other miracle healing beam. Crossing its stream with another is ill-advised."
+	var/power_cost = 75
+
+/obj/item/gun/medbeam/cyborg/process_fire(atom/target, mob/living/silicon/robot/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	if(user.cell.charge < power_cost) //Check if we have enough power.
+		to_chat(user, "<span class='warning'>Power inadequate to initiate beam projection.</span>")
+		LoseTarget()
+		return
+
+	playsound(target, 'sound/effects/magic.ogg', 10, TRUE, TRUE)
+	. = ..()
+
+/obj/item/gun/medbeam/cyborg/on_beam_tick(mob/living/target)
+	if(!istype(loc,/mob/living/silicon/robot))
+		return
+
+	var/mob/living/silicon/robot/user = loc
+
+	if(!user || !target) //Sanity
+		LoseTarget()
+		to_chat(user, "<span class='warning'>No target or user detected. Aborting.</span>")
+		return
+
+	if(user.cell.charge < power_cost) //Check if we have enough power.
+		to_chat(user, "<span class='warning'>Power inadequate to maintain beam projection.</span>")
+		LoseTarget()
+		return
+
+	user.cell.charge -= power_cost
+
+	playsound(target, 'sound/effects/magic.ogg', 10, TRUE, TRUE)
+
+	. = ..()
+
+/obj/item/gun/medbeam/cyborg/attack_self(mob/living/silicon/robot/user)
+	. = ..()
+	LoseTarget()
+	playsound(get_turf(src), 'sound/machines/chime.ogg', 30, TRUE)
+	to_chat(user, "<span class='warning'>You deactivate the beam projector.</span>")
+	return

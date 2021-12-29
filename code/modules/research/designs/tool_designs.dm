@@ -52,6 +52,12 @@
 	category = list("Tool Designs")
 	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
+/datum/design/rcd_loaded/bluespace
+	name = "Bluespace Rapid Construction Device"
+	desc = "A prototype RCD with ranged capability and extended capacity. Requires a bluespace core to operate properly."
+	id = "rcd_bluespace"
+	materials = list(/datum/material/iron = 80000, /datum/material/glass = 20000, /datum/material/bluespace = 3000)
+	build_path = /obj/item/construction/rcd/arcd/bluespace
 
 /datum/design/rcd_upgrade/frames
 	name = "RCD frames designs upgrade"

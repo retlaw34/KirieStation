@@ -59,6 +59,34 @@
 	icon_state = "syndiemag0"
 	magboot_state = "syndiemag"
 
+/obj/item/clothing/shoes/magboots/noslow
+	desc = "Pair of magnetic boots using a gravity core to reduce the weight and slowdown."
+	name = "dormant anomalous magboots"
+	icon = 'ModularTegustation/Teguicons/teguclothing.dmi'
+	slowdown_active = SHOES_SLOWDOWN
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	throw_speed = 2
+	throw_range = 3
+	var/anomaly_core = FALSE
+
+/obj/item/clothing/shoes/magboots/noslow/attack_self(mob/user)
+	if(!anomaly_core)
+		to_chat(user, "<span class='warning'>[src] require a gravity anomaly core to operate!</span>")
+		return
+	. = ..()
+
+/obj/item/clothing/shoes/magboots/noslow/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/assembly/signaler/anomaly/grav) && !anomaly_core)
+		name = "anomalous magboots"
+		to_chat(user, "<span class='notice'>You insert [C] into [src] and they start to feel much lighter.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+		anomaly_core = TRUE
+		throw_speed = 3
+		throw_range = 7
+		qdel(C)
+		return
+	. = ..()
+
 /obj/item/clothing/shoes/magboots/atmos
 	desc = "Atmospheric Technicians wear these magboots to stop them from getting tossed around in the wind."
 	name = "atmos magboots"

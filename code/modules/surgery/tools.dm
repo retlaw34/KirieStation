@@ -259,6 +259,11 @@
 		to_chat(user, "<span class='notice'>[src] is empty.</span>")
 	return
 
+/obj/item/organ_storage/proc/clear_organ()
+	icon_state = initial(icon_state) //We need to properly update the icon and overlays by reverting to our initial state.
+	desc = initial(desc)
+	cut_overlays()
+
 /obj/item/surgical_processor //allows medical cyborgs to scan and initiate advanced surgeries
 	name = "\improper Surgical Processor"
 	desc = "A device for scanning and initiating surgeries from a disk or operating computer."

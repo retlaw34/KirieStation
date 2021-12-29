@@ -347,3 +347,44 @@
 
 	update_icon()
 	return
+
+/obj/structure/windoor_assembly/proc/windoor_install_electroadaptive(obj/item/electroadaptive_pseudocircuit/W, mob/user)
+	if(!W.adapt_circuit(user, 15))
+		return
+
+	W.play_tool_sound(src, 100)
+	user.visible_message("<span class='notice'>[user] installs [W] into the airlock assembly.</span>", \
+						"<span class='notice'>You start to install [W] into the airlock assembly...</span>")
+
+	if(do_after(user, 40, target = src))
+		if(!src || electronics )
+			return
+
+		to_chat(user, "<span class='notice'>You install [W].</span>")
+
+		electronics = new /obj/item/electronics/airlock
+
+		electronics.accesses = W.accesses //Port over pseudocircuit data
+		electronics.one_access = W.one_access
+		electronics.unres_sides = W.unres_sides
+
+/obj/structure/door_assembly/proc/airlock_install_electroadaptive(obj/item/electroadaptive_pseudocircuit/W, mob/user)
+	if(!W.adapt_circuit(user, 15))
+		return
+
+	W.play_tool_sound(src, 100)
+	user.visible_message("<span class='notice'>[user] installs [W] into the airlock assembly.</span>", \
+						"<span class='notice'>You start to install [W] into the airlock assembly...</span>")
+
+	if(do_after(user, 40, target = src))
+		if( state != AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
+			return
+
+		to_chat(user, "<span class='notice'>You install [W].</span>")
+		state = AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER
+		name = "near finished airlock assembly"
+		electronics = new /obj/item/electronics/airlock
+
+		electronics.accesses = W.accesses //Port over pseudocircuit data
+		electronics.one_access = W.one_access
+		electronics.unres_sides = W.unres_sides

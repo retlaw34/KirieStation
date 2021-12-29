@@ -197,6 +197,13 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/magboots/anomaly
+	name = "Anomalous Magnetic Boots"
+	desc = "Magnetic boots that use gravity anomaly core power to reduce the weight and thus the slowdown."
+	id = "magboots_anomaly"
+	materials = list(/datum/material/iron = 10000, /datum/material/uranium = 5000, /datum/material/silver = 3500, /datum/material/gold = 3500)
+	build_path = /obj/item/clothing/shoes/magboots/noslow
+
 /datum/design/forcefield_projector
 	name = "Forcefield Projector"
 	desc = "A device which can project temporary forcefields to seal off an area."

@@ -633,16 +633,6 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/* // Tegustation Secborg edit
-/datum/design/borg_upgrade_disablercooler
-	name = "Cyborg Upgrade (Rapid Disabler Cooling Module)"
-	id = "borg_upgrade_disablercooler"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/disablercooler
-	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 6000, /datum/material/gold = 2000, /datum/material/diamond = 2000)
-	construction_time = 120
-	category = list("Cyborg Upgrade Modules")*/ // Tegustation Secborg edit
-
 /datum/design/borg_upgrade_diamonddrill
 	name = "Cyborg Upgrade (Diamond Drill)"
 	id = "borg_upgrade_diamonddrill"
@@ -821,6 +811,51 @@
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/broomer
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 500)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_secprojector
+	name = "Cyborg Upgrade (Sec Barrier Projector)"
+	id = "borg_upgrade_secprojector"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/sec_holobarrier
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 2000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_ebola
+	name = "Cyborg Upgrade (Integrated E-BOLA Launcher)"
+	id = "borg_upgrade_e-bola"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/e_bola
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 10000, /datum/material/silver = 2000, /datum/material/gold = 2000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_pepperupgrade
+	name = "Cyborg Upgrade (Improved Capsaicin Synthesizer)"
+	id = "borg_upgrade_pepperspray"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/peppersprayupgrade
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 2000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_e_gun_lethal
+	name = "Cyborg Upgrade (Integrated Energy Gun Kill Capacitors)"
+	id = "borg_upgrade_e_gun_kill"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/e_gun_lethal
+	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 6000, /datum/material/gold = 2000, /datum/material/uranium = 5000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
+/datum/design/borg_upgrade_e_gun_cooler
+	name = "Cyborg Upgrade (Integrated Energy Gun Cooling Module)"
+	id = "borg_upgrade_e_gun_cooler"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/e_gun_cooler
+	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 6000, /datum/material/gold = 2000, /datum/material/diamond = 2000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 

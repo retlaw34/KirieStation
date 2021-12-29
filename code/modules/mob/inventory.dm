@@ -229,6 +229,10 @@
 					if (I_stack.merge(inactive_stack))
 						to_chat(usr, "<span class='notice'>Your [inactive_stack.name] stack now contains [inactive_stack.get_amount()] [inactive_stack.singular_name]\s.</span>")
 						return TRUE
+	var/obj/item/borg/apparatus/E = locate() in model.modules // TEGUSTATION MEDBORG CHANGES -Surrealistik Feb 2020
+	if(!E)
+		return
+	E.pre_attack(I, src)
 
 	if(put_in_active_hand(I, forced))
 		return TRUE

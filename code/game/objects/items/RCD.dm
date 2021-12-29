@@ -847,7 +847,44 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 		user.Beam(A,icon_state="rped_upgrade", time = 3 SECONDS)
 	rcd_create(A,user)
 
+// Bluespace Ranged RCD
+/obj/item/construction/rcd/arcd/bluespace
+	name = "bluespace rapid-construction-device (BRCD)"
+	desc = "A prototype RCD with ranged capability and extended capacity. Requires a bluespace core to operate properly."
+	max_matter = 240
+	matter = 240
+	delay_mod = 0.8
+	var/anomaly_core = FALSE
+	var/rcd_range = 4
 
+/obj/item/construction/rcd/arcd/bluespace/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/assembly/signaler/anomaly/bluespace) && !anomaly_core)
+		to_chat(user, "<span class='notice'>You insert [C] into the [src] and green light blinks on the panel.</span>")
+		anomaly_core = TRUE
+		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+		desc = "A prototype RCD with ranged capability and extended capacity."
+		qdel(C)
+		return
+	. = ..()
+
+/obj/item/construction/rcd/arcd/bluespace/attack_self(mob/user)
+	if(!anomaly_core)
+		to_chat(user, "<span class='warning'>The BRCD requires a bluespace anomaly core to operate!</span>")
+		return
+	. = ..()
+
+/obj/item/construction/rcd/arcd/bluespace/afterattack(atom/A, mob/user)
+	if(!anomaly_core)
+		to_chat(user, "<span class='warning'>The BRCD requires a bluespace anomaly core to operate!</span>")
+		return
+	. = ..()
+
+/obj/item/construction/rcd/arcd/bluespace/range_check(atom/A, mob/user)
+	if(!(A in view(rcd_range, get_turf(user))))
+		to_chat(user, "<span class='warning'>The \'Out of Range\' light on [src] blinks red.</span>")
+		return FALSE
+	else
+		return TRUE
 
 // RAPID LIGHTING DEVICE
 

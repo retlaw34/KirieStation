@@ -120,3 +120,14 @@
 /mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = clamp(bodytemperature + amount,min_temp,max_temp)
+
+//Checks for a certain tyupepath inside the mob
+/mob/proc/check_for_item(typepath)
+	if(locate(typepath) in src)
+		return (locate(typepath) in src)
+
+	if(iscyborg(src))
+		var/mob/living/silicon/robot/R = src
+		return (locate(typepath) in R.model)
+
+	return FALSE

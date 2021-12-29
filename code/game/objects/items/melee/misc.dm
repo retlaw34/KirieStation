@@ -797,3 +797,48 @@
 	overlay = mutable_appearance(icon, overlay_state)
 	overlay.appearance_flags = RESET_COLOR | RESET_ALPHA | KEEP_APART
 	add_overlay(overlay)
+
+/obj/item/melee/flux_sword
+	name = "dormant flux sword"
+	desc = "A weapon that is using power of high-voltage electricity. Requires flux anomaly core to operate properly."
+	icon_state = "claymore_gold"
+	inhand_icon_state = "claymore_gold"
+	worn_icon_state = "claymore_gold"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	slot_flags = null
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	force = 10
+	armour_penetration = 0
+	var/burn_force = 12
+	var/stam_force = 10
+	var/anomaly_ready = FALSE
+
+/obj/item/melee/flux_sword/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/assembly/signaler/anomaly/flux) && !anomaly_ready)
+		to_chat(user, "<span class='notice'>You insert [C] into the [src].</span>")
+		playsound(src.loc, "sparks", 50, TRUE)
+		name = "flux sword"
+		anomaly_ready = TRUE
+		force = 12
+		armour_penetration = 35
+		qdel(C)
+		return
+
+/obj/item/melee/flux_sword/afterattack(target, mob/user, proximity_flag)
+	. = ..()
+	if(proximity_flag && anomaly_ready)
+		if(isliving(target))
+			var/mob/living/L = target
+			playsound(src.loc, "sparks", 75, TRUE, -1)
+			do_sparks(5, TRUE, L)
+			L.adjustFireLoss(burn_force)
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				H.adjustStaminaLoss(stam_force)
+				H.electrocution_animation(15)
+				H.jitteriness += 5
+				if(prob(20))
+					H.Knockdown(burn_force / 2)

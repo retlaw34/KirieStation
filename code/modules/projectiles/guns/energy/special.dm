@@ -388,3 +388,36 @@
 /obj/item/gun/energy/tesla_cannon/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
+
+/obj/item/gun/energy/vortex_gun
+	name = "black hole projector"
+	desc = "A weapon that releases a dark matter energy in a form of compressed singularity. Requires a vortex anomaly core to function. Fits in a bag."
+	ammo_type = list(/obj/item/ammo_casing/energy/vortex)
+	w_class = WEIGHT_CLASS_NORMAL
+	inhand_icon_state = null
+	icon = 'ModularTegustation/Teguicons/bhole_projector.dmi'
+	icon_state = "vortex_gun"
+	cell_type = /obj/item/stock_parts/cell/mini_egun // 3 shots.
+	var/firing_core = FALSE
+
+/obj/item/gun/energy/vortex_gun/Initialize()
+	. = ..()
+	fire_delay = 20
+
+/obj/item/gun/energy/vortex_gun/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/assembly/signaler/anomaly/vortex) && !firing_core)
+		to_chat(user, "<span class='notice'>You insert [C] into the [src] and the weapon starts humming.</span>")
+		firing_core = TRUE
+		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+		qdel(C)
+		return
+
+/obj/item/gun/energy/vortex_gun/can_shoot()
+	if(!firing_core)
+		return FALSE
+	return ..()
+
+/obj/item/gun/energy/vortex_gun/shoot_with_empty_chamber(mob/living/user)
+	. = ..()
+	if(!firing_core)
+		to_chat(user, "<span class='danger'>The display says, 'NO CORE INSTALLED'.</span>")

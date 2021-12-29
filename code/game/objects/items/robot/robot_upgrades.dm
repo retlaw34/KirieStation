@@ -717,6 +717,42 @@
 		if (C)
 			R.model.remove_module(C, TRUE)
 
+/obj/item/borg/upgrade/circuit_app/proc/upgrade_engiborg_manipulator(mob/living/silicon/robot/R, mob/user)
+
+	var/obj/item/borg/apparatus/circuit/C = locate() in R.model.modules
+	if(!C)
+		to_chat(user, "<span class='warning'>This unit has no [C] to upgrade!</span>")
+		return FALSE
+
+	if(C.upgraded) //Delete the basic manipulator if we have it
+		to_chat(user, "<span class='warning'>This unit already has an upgraded [C].</span>")
+		return FALSE
+
+	C.upgraded = TRUE
+	C.name = "advanced component manipulation apparatus"
+	C.desc = "A special apparatus for carrying and manipulating engineering components like electronics and wall mounted frames. This has been upgraded to also manipulate circuitboards, assemblies, stock parts, gas tanks and vendor refills. Alt-Z or right-click to drop the stored object."
+	C.storable = list(/obj/item/wallframe,
+					/obj/item/electronics,
+					/obj/item/circuitboard,
+					/obj/item/stock_parts,
+					/obj/item/assembly,
+					/obj/item/tank,
+					/obj/item/vending_refill)
+
+/obj/item/borg/upgrade/circuit_app/proc/remove_engiborg_manipulator_upgrade(mob/living/silicon/robot/R, mob/user)
+
+	var/obj/item/borg/apparatus/circuit/C = locate() in R.model.modules
+	if(C && C.upgraded) //If upgraded, remove the upgrade
+		C.upgraded = FALSE
+		C.name = initial(C.name)
+		C.desc = initial(C.desc)
+		C.storable = list(/obj/item/wallframe,
+					/obj/item/tank,
+					/obj/item/electronics)
+		var/obj/item/stored_item = C.stored
+		if(is_type_in_typecache(stored_item, GLOB.basic_engiborg_manipulator_allowed)) //Drop stuff we can no longer hold.
+			stored_item.forceMove(get_turf(usr))
+
 /obj/item/borg/upgrade/beaker_app
 	name = "beaker storage apparatus"
 	desc = "A supplementary beaker storage apparatus for medical cyborgs."
@@ -771,3 +807,151 @@
 	var/obj/item/pushbroom/cyborg/BR = locate() in R.model.modules
 	if (BR)
 		R.model.remove_module(BR, TRUE)
+
+/obj/item/borg/upgrade/sec_holobarrier
+	name = "cyborg security holobarrier projector"
+	desc = "A module that permits creation of holographic security barriers."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "signmaker_sec"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/security)
+
+/obj/item/borg/upgrade/sec_holobarrier/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
+		if(E)
+			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
+			return FALSE
+
+		E = new(R.model)
+		R.model.basic_modules += E
+		R.model.add_module(E, FALSE, TRUE)
+
+/obj/item/borg/upgrade/sec_holobarrier/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
+		if (E)
+			R.model.remove_module(E, TRUE)
+
+/obj/item/holosign_creator/security/cyborg
+	name = "Security Holobarrier Projector"
+	desc = "A hard light projector that creates holographic security barriers."
+	icon_state = "signmaker_sec"
+	holosign_type = /obj/structure/holosign/barrier
+	creation_time = 15
+	max_signs = 9
+	var/shock = 0
+
+/obj/item/holosign_creator/security/cyborg/attack_self(mob/user)
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+
+		if(shock)
+			to_chat(user, "<span class='notice'>You clear all active holograms, and reset your projector to normal.</span>")
+			holosign_type = /obj/structure/holosign/barrier
+			creation_time = 5
+			if(signs.len)
+				for(var/H in signs)
+					qdel(H)
+			shock = 0
+			return
+		else if(R.emagged&&!shock)
+			to_chat(user, "<span class='warning'>You clear all active holograms, and overload your energy projector!</span>")
+			holosign_type = /obj/structure/holosign/barrier/cyborg/hacked
+			creation_time = 30
+			if(signs.len)
+				for(var/H in signs)
+					qdel(H)
+			shock = 1
+			return
+		else
+			if(signs.len)
+				for(var/H in signs)
+					qdel(H)
+				to_chat(user, "<span class='notice'>You clear all active holograms.</span>")
+	if(signs.len)
+		for(var/H in signs)
+			qdel(H)
+		to_chat(user, "<span class='notice'>You clear all active holograms.</span>")
+
+/obj/item/borg/upgrade/e_bola
+	name = "cyborg energy bola launcher"
+	desc = "A module that permits firing energy bolas."
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "dragnet"
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/security)
+
+/obj/item/borg/upgrade/e_bola/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
+		if(E)
+			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
+			return FALSE
+
+		E = new(R.model)
+		R.model.basic_modules += E
+		R.model.add_module(E, FALSE, TRUE)
+
+/obj/item/borg/upgrade/e_bola/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
+		if (E)
+			R.model.remove_module(E, TRUE)
+
+/obj/item/borg/upgrade/peppersprayupgrade
+	name = "cyborg improved capsaicin synthesizer module"
+	desc = "Enhances a security cyborg's integrated pepper spray synthesizer, improving capacity and synthesizing efficiency."
+	icon_state = "cyborg_upgrade3"
+	require_model = 1
+	model_type = list(/obj/item/robot_model/security)
+
+/obj/item/borg/upgrade/peppersprayupgrade/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
+		if(!T)
+			to_chat(user, "<span class='warning'>There's no pepper spray synthesizer in this unit!</span>")
+			return FALSE
+		if(T.upgraded)
+			to_chat(R, "<span class='warning'>A [T] unit is already installed!</span>")
+			to_chat(user, "<span class='warning'>There's no room for another [T]!</span>")
+			return FALSE
+
+		T.generate_amount += initial(T.generate_amount)
+		T.volume += initial(T.volume)
+		T.upgraded = TRUE
+
+/obj/item/borg/upgrade/peppersprayupgrade/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
+		if(!T)
+			return FALSE
+		T.generate_amount = initial(T.generate_amount)
+		T.volume = initial(T.volume)
+		T.upgraded = FALSE
+
+/obj/item/borg/upgrade/medbeam
+	name = "medical cyborg heal beam"
+	desc = "An upgrade to the Medical module, installing a built-in healing beam."
+	icon_state = "cyborg_upgrade3"
+	require_model = 1
+	model_type = list(/obj/item/robot_model/medical)
+
+/obj/item/borg/upgrade/medbeam/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/gun/medbeam/cyborg/MB = new(R.model)
+		R.model.basic_modules += MB
+		R.model.add_module(MB, FALSE, TRUE)
+
+/obj/item/borg/upgrade/medbeam/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		var/obj/item/gun/medbeam/cyborg/MB = locate() in R.model
+		R.model.remove_module(MB, TRUE)

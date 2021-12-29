@@ -338,3 +338,25 @@
 	build_path = /obj/item/melee/baton/boomerang
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/vortex_gun
+	name = "Black Hole Projector"
+	desc = "A strange weapon that uses a compressed singularity as projectiles. Requires a vortex anomaly core to operate properly."
+	id = "vortex_gun"
+	construction_time = 200
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 30000, /datum/material/glass = 20000, /datum/material/uranium = 15000, /datum/material/bluespace = 10000, /datum/material/diamond = 5000)
+	build_path = /obj/item/gun/energy/vortex_gun
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/flux_sword
+	name = "Flux Sword"
+	desc = "A weapon that is using power of high-voltage electricity. Requires a flux anomaly core to operate properly."
+	id = "flux_sword"
+	construction_time = 200
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 45000, /datum/material/titanium = 30000, /datum/material/uranium = 15000, /datum/material/diamond = 5000)
+	build_path = /obj/item/melee/flux_sword
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE

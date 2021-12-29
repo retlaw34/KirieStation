@@ -223,6 +223,61 @@
 		return
 	. = ..()
 
+/obj/item/reagent_containers/spray/pepper/cyborg
+	name = "Integrated Pepperspray"
+	desc = "An integrated pepperspray synthesizer. Use for blinding criminal scum. Utilizes your power supply to synthesize capsaicin spray over time."
+	reagent_flags = NONE
+	volume = 50
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 50)
+	var/charge_cost = 50
+	var/generate_amount = 5
+	var/generate_type = /datum/reagent/consumable/condensedcapsaicin
+	var/last_generate = 0
+	var/generate_delay = 50	//deciseconds
+	var/upgraded = FALSE
+	can_fill_from_container = FALSE
+
+// Fix pepperspraying yourself
+/obj/item/reagent_containers/spray/pepper/cyborg/afterattack(atom/A as mob|obj, mob/user)
+	if (A.loc == user)
+		return
+	. = ..()
+
+/obj/item/reagent_containers/spray/pepper/cyborg/Initialize()
+	. = ..()
+	START_PROCESSING(SSfastprocess, src)
+
+/obj/item/reagent_containers/spray/pepper/cyborg/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	return ..()
+
+/obj/item/reagent_containers/spray/pepper/cyborg/process()
+	if(world.time < last_generate + generate_delay)
+		return
+	last_generate = world.time
+	generate_reagents()
+
+/obj/item/reagent_containers/spray/pepper/cyborg/empty()
+	to_chat(usr, "<span class='warning'>You can not empty this!</span>")
+	return
+
+/obj/item/reagent_containers/spray/pepper/cyborg/proc/generate_reagents()
+	if(!issilicon(src.loc))
+		return
+
+	var/mob/living/silicon/robot/R = src.loc
+	if(!R || !R.cell)
+		return
+
+	if(R.cell.charge < charge_cost) //Not enough energy to regenerate reagents.
+		return
+
+	if(reagents.total_volume >= volume) //If we have maximum reagents, we don't use energy to produce any.
+		return
+
+	R.cell.use(charge_cost)
+	reagents.add_reagent(generate_type, generate_amount)
+
 //water flower
 /obj/item/reagent_containers/spray/waterflower
 	name = "water flower"

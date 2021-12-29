@@ -947,3 +947,10 @@
 	var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
 	if(program)
 		program.force_full_update()
+
+/mob/living/silicon/robot/proc/borg_unbuckle(mob/living/M) //Allows borgs to unbuckle people via loading them.
+	if(!M.buckled)
+		return
+	if(M.has_buckled_mobs())
+		M.unbuckle_all_mobs(force = TRUE)
+	M.buckled.unbuckle_mob(M, force = TRUE)
